@@ -1,0 +1,40 @@
+[
+  {
+    "id": 1,
+    "Image": "trails/1.jpg",
+    "Name": "Countryside Ramble",
+    "Location": "Durbach, Germany",
+    "TimeInMinutes": 195,
+    "Length": 11,
+    "Description": "A realy nice walk in some very scenic countryside.",
+    "Route": [
+      {
+        "Stage": 1,
+        "Description": "Follow the path to the fork and go left."
+      },
+      {
+        "Stage": 2,
+        "Description": "Cross the brige and turn right."
+      },
+      {
+        "Stage": 3,
+        "Description": "The trail finishes at end of the valley."
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "Image": "trails/2.jpg",
+    "Name": "Woodland walk",
+    "Location": "Nottingham, UK",
+    "TimeInMinutes": 80,
+    "Length": 4,
+    "Description": "Lost of tall tree and bubbling steams.",
+    "Route": [
+      {
+        "Stage": 1,
+        "Description": "The walk is one big loop. Just keep following the signs."
+      }
+    ]
+  }
+]
