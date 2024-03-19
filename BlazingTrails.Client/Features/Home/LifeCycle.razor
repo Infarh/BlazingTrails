@@ -1,5 +1,6 @@
 ﻿@page "/lifecycle"
 @implements IDisposable
+@implements IAsyncDisposable
 
 <h1>Component Lifecycle</h1>
 <p>Check the browser console for details...</p>
@@ -58,5 +59,12 @@
     {
         // Блок, необходимый для выполнения отписок от событий для предотвращения утечек памяти
         Console.WriteLine("Dispose");
+    }
+
+    public ValueTask DisposeAsync() // будет вызван вместо IDisposable.Dispose()
+    {
+        Console.WriteLine("DisposeAsync");
+
+        return new();
     }
 }
