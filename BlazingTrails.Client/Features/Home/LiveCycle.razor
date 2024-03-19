@@ -11,44 +11,43 @@
 
     protected override void OnInitialized()
     {
-        Console.WriteLine("OnInitialized - Begin");
+        Console.WriteLine("OnInitialized");
         base.OnInitialized();
-        Console.WriteLine("OnInitialized - End");
     }
 
     protected override async Task OnInitializedAsync()
     {
         Console.WriteLine("OnInitializedAsync - Begin");
         await base.OnInitializedAsync();
+        await Task.Delay(300);
         Console.WriteLine("OnInitializedAsync - End");
     }
 
     protected override void OnParametersSet()
     {
-        Console.WriteLine("OnParametersSet - Begin");
+        Console.WriteLine("OnParametersSet");
         base.OnParametersSet();
-        Console.WriteLine("OnParametersSet - End");
     }
 
     protected override async Task OnParametersSetAsync()
     {
         Console.WriteLine("OnParametersSetAsync - Begin");
         await base.OnParametersSetAsync();
+        await Task.Delay(300);
         Console.WriteLine("OnParametersSetAsync - End");
     }
 
     protected override void OnAfterRender(bool firstRender)
     {
-        Console.WriteLine($"OnAfterRender(firstRender:{firstRender}) - Begin");
+        Console.WriteLine($"OnAfterRender(firstRender:{firstRender})");
         base.OnAfterRender(firstRender);
-        Console.WriteLine("OnAfterRender - End");
     }
-
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         Console.WriteLine($"OnAfterRenderAsync(firstRender:{firstRender}) - Begin");
         await base.OnAfterRenderAsync(firstRender);
-        Console.WriteLine("OnAfterRenderAsync - End");
+        await Task.Delay(300);
+        Console.WriteLine($"OnAfterRenderAsync(firstRender:{firstRender}) - End");
     }
 }
