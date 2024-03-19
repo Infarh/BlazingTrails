@@ -23,9 +23,5 @@ else
 @code {
     private Trail? _SelectedTrail;
 
-    private void HandleTrailSelected(Trail trail)
-    {
-        _SelectedTrail = trail;
-        StateHasChanged();
-    }
+    private void HandleTrailSelected(Trail trail) => _SelectedTrail = trail;
 }
