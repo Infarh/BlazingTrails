@@ -1,3 +1,20 @@
 ﻿@page "/"
+@inject HttpClient Http
 
-HomePage
+<h3>Home page</h3>
+
+@code {
+    private IEnumerable<Trail>? _Trails;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            _Trails = await Http.GetFromJsonAsync<IEnumerable<Trail>>("trails/trail-data.json");
+        }
+        catch(HttpRequestException error)
+        {
+            Console.WriteLine($"Проблема с загрузкой данных: {error.Message}");
+        }
+    }
+}
