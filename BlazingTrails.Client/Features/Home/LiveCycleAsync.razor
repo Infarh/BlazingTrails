@@ -1,0 +1,21 @@
+﻿@foreach(var word in _Greeting)
+{
+    <p>@word</p>
+}
+
+@code {
+    private List<string> _Greeting = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        _Greeting.Add("Welcome!");
+
+        await Task.Delay(1000);
+
+        _Greeting.Add("to");
+
+        await Task.Delay(1000);
+
+        _Greeting.Add("Blazor in Action");
+    }
+}
