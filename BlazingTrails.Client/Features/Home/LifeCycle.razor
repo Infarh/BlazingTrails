@@ -1,4 +1,7 @@
-﻿<h1>Component Lifecycle</h1>
+﻿@page "/lifecycle"
+@implements IDisposable
+
+<h1>Component Lifecycle</h1>
 <p>Check the browser console for details...</p>
 
 @code {
@@ -49,5 +52,11 @@
         await base.OnAfterRenderAsync(firstRender);
         await Task.Delay(300);
         Console.WriteLine($"OnAfterRenderAsync(firstRender:{firstRender}) - End");
+    }
+
+    public void Dispose()
+    {
+        // Блок, необходимый для выполнения отписок от событий для предотвращения утечек памяти
+        Console.WriteLine("Dispose");
     }
 }
