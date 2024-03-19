@@ -4,16 +4,28 @@
 
 @* <LifeCycleAsync/> *@
 
-@if(_Trails == null)
+@if (_Trails == null)
 {
     <p>Loading trails...</p>
 }
 else
 {
+    <TrailDetails Trail="_SelectedTrail" />
+
     <div class="grid">
         @foreach (var trail in _Trails)
         {
-            <TrailCard Trail="trail"/>
+            <TrailCard Trail="trail" OnSelected="HandleTrailSelected"/>
         }
     </div>
+}
+
+@code {
+    private Trail? _SelectedTrail;
+
+    private void HandleTrailSelected(Trail trail)
+    {
+        _SelectedTrail = trail;
+        StateHasChanged();
+    }
 }
