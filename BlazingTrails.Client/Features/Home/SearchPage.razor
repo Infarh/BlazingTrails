@@ -1,0 +1,58 @@
+﻿@page "/search/{SearchTerm}"
+@inject HttpClient Http
+@inject NavigationManager NavManager
+
+<PageTitle>Search Trails - Blazing Trails</PageTitle>
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="/">Home</a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">Search</li>
+    </ol>
+</nav>
+
+<h3 class="mt-5 mb-4">Search result for "@SearchTerm"</h3>
+
+@if (_SearchResult is null)
+{
+    <p>Loading search result...</p>
+}
+else
+{
+    <TrailDetails Trail="_SelectedTrail"/>
+
+    <div class="grid">
+        @foreach (var trail in _SearchResult)
+        {
+            <TrailCard Trail="trail" OnSelected="t => _SelectedTrail = t"/>
+        }
+    </div>
+}
+
+@code
+{
+    private IEnumerable<Trail>? _SearchResult;
+
+    private Trail? _SelectedTrail;
+
+    [Parameter] public string SearchTerm { get; set; } = null!;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+
+        try
+        {
+            var all_trails = await Http.GetFromJsonAsync<IEnumerable<Trail>>("trails/trail-data.json");
+            _SearchResult = all_trails!.Where(t => 
+                t.Name.Contains(SearchTerm, StringComparison.CurrentCultureIgnoreCase) ||
+                t.Location.Contains(SearchTerm, StringComparison.CurrentCultureIgnoreCase));
+        }
+        catch (HttpRequestException error)
+        {
+            Console.WriteLine($"There was a problem loading trail data {error.Message}");
+        }
+    }
+}
