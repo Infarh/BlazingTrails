@@ -15,7 +15,7 @@ else
     <div class="grid">
         @foreach (var trail in _Trails)
         {
-            <TrailCard Trail="trail" OnSelected="trail => _SelectedTrail = trail"/>
+            <TrailCard Trail="trail" OnSelected="SelectedTrail => _SelectedTrail = SelectedTrail"/>
         }
     </div>
 }
