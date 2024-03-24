@@ -1,0 +1,8 @@
+.test {
+  background: red;
+}
+.test .inner {
+  border: dotted 1px blue;
+}
+
+/*# sourceMappingURL=test.css.map */

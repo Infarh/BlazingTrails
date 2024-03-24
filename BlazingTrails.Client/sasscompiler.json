@@ -1,0 +1,30 @@
+{
+  // https://learn.microsoft.com/ru-ru/aspnet/core/blazor/components/css-isolation?view=aspnetcore-8.0#css-preprocessor-support
+  // https://www.nuget.org/packages/AspNetCore.SassCompiler#readme-body-tab
+  "Arguments": "--error-css --style=expanded --source-map",
+  "Source": "Styles",
+  "Target": "wwwroot/css",
+  "GenerateScopedCss": true,
+  "ScopedCssFolders": [ "Views", "Pages", "Shared", "Components", "Features" ],
+  "IncludePaths": [],
+
+  // You can override specific options based on the build configuration
+  "Configurations": {
+    "Debug": { // These options apply only to Debug builds
+      "Arguments": "--style=expanded"
+    }
+  },
+
+  "Compilations": [
+    // Specify a specific file source/target in addition to the "Styles" -> "wwwroot/css" Source/Target above
+    //{
+    //  "Source": "wwwroot/scss/site.scss",
+    //  "Target": "wwwroot/css/site.min.css"
+    //},
+    // Or an extra directory to a different target directory
+    //{
+    //  "Source": "Lib/Styles",
+    //  "Target": "wwwroot/lib/css"
+    //}
+  ]
+}

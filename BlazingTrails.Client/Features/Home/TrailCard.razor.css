@@ -1,0 +1,8 @@
+.main-block {
+  background: red;
+}
+.main-block .inner-block {
+  border: solid 1px blue;
+}
+
+/*# sourceMappingURL=TrailCard.razor.css.map */
