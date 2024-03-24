@@ -1,5 +1,5 @@
 ﻿@page "/search/{SearchTerm}"
-@page "/search/{SearchTerm}/MaxLength/{MaxLength:int}"
+@* @page "/search/{SearchTerm}/MaxLength/{MaxLength:int}" *@
 
 @inject HttpClient Http
 @inject NavigationManager NavManager
@@ -16,7 +16,7 @@
 </nav>
 
 <h3 class="mt-5 mb-4">Search result for "@SearchTerm"</h3>
-<SearchFilter SearchTerm="@SearchTerm"/>
+<SearchFilter SearchTerm="@SearchTerm" MaxLength="@MaxLength" MaxTime="@MaxTime"/>
 
 @if (_SearchResult is null)
 {
@@ -44,7 +44,9 @@ else
 
     [Parameter] public string SearchTerm { get; set; } = null!;
 
-    [Parameter] public int? MaxLength { get; set; }
+    [Parameter, SupplyParameterFromQuery] public int? MaxLength { get; set; }
+
+    [Parameter, SupplyParameterFromQuery] public int? MaxTime { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
@@ -66,12 +68,22 @@ else
         }
     }
 
-    protected override void OnParametersSet()
+    protected override void OnParametersSet() => UpdateFilters();
+
+    private void UpdateFilters()
     {
         if (!_CachedSearchResults.Any()) return;
 
-        _SearchResult = MaxLength is { } max_length 
-            ? _CachedSearchResults.Where(t => t.Length <= max_length) 
+        var filters = new List<Func<Trail, bool>>();
+
+        if (MaxLength is { } max_length and > 0)
+            filters.Add(t => t.Length <= max_length);
+
+        if(MaxTime is { } max_time and > 0)
+            filters.Add(t => t.TimeInMinutes <= max_time * 60);
+
+        _SearchResult = filters.Count > 0
+            ? _CachedSearchResults.Where(trail => filters.All(filter => filter(trail)))
             : _CachedSearchResults;
     }
 }
