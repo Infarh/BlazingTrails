@@ -29,4 +29,12 @@
     <UpToDateCheckInput Remove="Features\Home\TrailCard.razor.scss" />
   </ItemGroup>
 
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Features\Home\SerachFilter.razor.scss" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Features\Home\TrailSearch.razor.scss" />
+  </ItemGroup>
+
 </Project>

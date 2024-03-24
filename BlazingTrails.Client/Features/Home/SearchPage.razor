@@ -1,4 +1,6 @@
 ﻿@page "/search/{SearchTerm}"
+@page "/search/{SearchTerm}/MaxLength/{MaxLength:int}"
+
 @inject HttpClient Http
 @inject NavigationManager NavManager
 
@@ -14,6 +16,7 @@
 </nav>
 
 <h3 class="mt-5 mb-4">Search result for "@SearchTerm"</h3>
+<SearchFilter SearchTerm="@SearchTerm"/>
 
 @if (_SearchResult is null)
 {
@@ -33,11 +36,15 @@ else
 
 @code
 {
+    private IEnumerable<Trail> _CachedSearchResults = Enumerable.Empty<Trail>();
+
     private IEnumerable<Trail>? _SearchResult;
 
     private Trail? _SelectedTrail;
 
     [Parameter] public string SearchTerm { get; set; } = null!;
+
+    [Parameter] public int? MaxLength { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
@@ -46,13 +53,28 @@ else
         try
         {
             var all_trails = await Http.GetFromJsonAsync<IEnumerable<Trail>>("trails/trail-data.json");
+
             _SearchResult = all_trails!.Where(t => 
                 t.Name.Contains(SearchTerm, StringComparison.CurrentCultureIgnoreCase) ||
                 t.Location.Contains(SearchTerm, StringComparison.CurrentCultureIgnoreCase));
+
+            _CachedSearchResults = _SearchResult;
         }
         catch (HttpRequestException error)
         {
             Console.WriteLine($"There was a problem loading trail data {error.Message}");
+        }
+    }
+
+    protected override void OnParametersSet()
+    {
+        if (!_CachedSearchResults.Any()) return;
+
+        if (MaxLength is { } max_length)
+            _SearchResult = _CachedSearchResults.Where(t => t.Length <= max_length);
+        else
+        {
+            _SearchResult = _CachedSearchResults;
         }
     }
 }
