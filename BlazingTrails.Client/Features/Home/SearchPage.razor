@@ -70,11 +70,8 @@ else
     {
         if (!_CachedSearchResults.Any()) return;
 
-        if (MaxLength is { } max_length)
-            _SearchResult = _CachedSearchResults.Where(t => t.Length <= max_length);
-        else
-        {
-            _SearchResult = _CachedSearchResults;
-        }
+        _SearchResult = MaxLength is { } max_length 
+            ? _CachedSearchResults.Where(t => t.Length <= max_length) 
+            : _CachedSearchResults;
     }
 }
