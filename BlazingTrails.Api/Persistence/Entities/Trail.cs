@@ -1,4 +1,7 @@
-﻿namespace BlazingTrails.Api.Persistence.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+
+namespace BlazingTrails.Api.Persistence.Entities;
 
 public class Trail
 {
@@ -17,4 +20,16 @@ public class Trail
     public int Length { get; set; }
 
     public ICollection<RouteInstruction> Route { get; set; } = new HashSet<RouteInstruction>();
+}
+
+public class TrailConfig : IEntityTypeConfiguration<Trail>
+{
+    public void Configure(EntityTypeBuilder<Trail> builder)
+    {
+        builder.Property(p => p.Name).IsRequired();
+        builder.Property(p => p.Description).IsRequired();
+        builder.Property(p => p.Location).IsRequired();
+        builder.Property(p => p.TimeInMinutes).IsRequired();
+        builder.Property(p => p.Length).IsRequired();
+    }
 }
