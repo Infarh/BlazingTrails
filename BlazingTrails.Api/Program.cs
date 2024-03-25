@@ -1,3 +1,6 @@
+using System.Threading.Tasks.Dataflow;
+using BlazingTrails.Api.Persistence.Entities;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
