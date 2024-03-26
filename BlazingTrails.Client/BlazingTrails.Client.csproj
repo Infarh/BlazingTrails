@@ -18,30 +18,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <UpToDateCheckInput Remove="wwwroot\css\test.scss" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="Styles\test.scss" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <UpToDateCheckInput Remove="Features\Home\TrailCard.razor.scss" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <UpToDateCheckInput Remove="Features\Home\SerachFilter.razor.scss" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <UpToDateCheckInput Remove="Features\Home\TrailSearch.razor.scss" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\BlazingTrails.Shared\BlazingTrails.Shared.csproj" />
   </ItemGroup>
 
   <ItemGroup>
+    <UpToDateCheckInput Remove="wwwroot\css\test.scss" />
+    <UpToDateCheckInput Remove="Features\Home\TrailCard.razor.scss" />
+    <UpToDateCheckInput Remove="Features\Home\SerachFilter.razor.scss" />
+    <UpToDateCheckInput Remove="Features\Home\TrailSearch.razor.scss" />
     <UpToDateCheckInput Remove="Features\ManageTrails\FormSeection.razor.scss" />
   </ItemGroup>
 

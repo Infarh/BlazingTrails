@@ -368,4 +368,4 @@ FodyWeavers.xsd
 /BlazingTrails.Client/Features/Home/TrailCard.razor.css*
 /BlazingTrails.Client/Features/Home/TrailSearch.razor.css*
 /BlazingTrails.Client/wwwroot/css/test.css
-/BlazingTrails.Client/Features/ManageTrails/FormSeection.razor.css*
+/BlazingTrails.Client/Features/ManageTrails/FormSection.razor.css*
