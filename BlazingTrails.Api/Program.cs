@@ -18,6 +18,10 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
     app.UseWebAssemblyDebugging();
+
+    await using var scope = app.Services.CreateAsyncScope();
+    var db = scope.ServiceProvider.GetRequiredService<BlazingTrailsContext>();
+    await db.Database.MigrateAsync();
 }
 
 app.UseHttpsRedirection();
