@@ -41,4 +41,8 @@
     <ProjectReference Include="..\BlazingTrails.Shared\BlazingTrails.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Features\ManageTrails\FormSeection.razor.scss" />
+  </ItemGroup>
+
 </Project>

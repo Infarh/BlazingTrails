@@ -364,7 +364,8 @@ FodyWeavers.xsd
 
 /BlazingTrails.Api/Persistence/Data/blazingtrails.db*
 
-/BlazingTrails.Client/Features/Home/SearchFilter.razor.css
-/BlazingTrails.Client/Features/Home/TrailCard.razor.css
-/BlazingTrails.Client/Features/Home/TrailSearch.razor.css
+/BlazingTrails.Client/Features/Home/SearchFilter.razor.css*
+/BlazingTrails.Client/Features/Home/TrailCard.razor.css*
+/BlazingTrails.Client/Features/Home/TrailSearch.razor.css*
 /BlazingTrails.Client/wwwroot/css/test.css
+/BlazingTrails.Client/Features/ManageTrails/FormSeection.razor.css*
