@@ -16,32 +16,22 @@
 <EditForm Model="_Trail" OnValidSubmit="SubmitForm">
     <FormSection Title="Basic Details"
                  HelpText="This information is used to identify the trail and can be searched to help hikers find it">
-        <div class="row">
-            <div class="col-6">
-                <div class="form-group">
-                    <label for="trail-name" class="font-weight-bold text-secondary">Name</label>
-                    <InputText class="form-control" id="trail-name" @bind-Value="_Trail.Name"/>
-                </div>
-            </div>
-        </div>
 
-        <div class="row">
-            <div class="col">
-                <div class="form-group">
-                    <label for="trail-description" class="font-weight-bold text-secondary">Description</label>
-                    <InputTextArea class="form-control" id="trail-description" rows="6" @bind-Value="_Trail.Description" />
-                </div>
-            </div>
-        </div>
+        <FormFieldSet Width="col-6">
+            <label for="trail-name" class="font-weight-bold text-secondary">Name</label>
+            <InputText class="form-control" id="trail-name" @bind-Value="_Trail.Name" />
+        </FormFieldSet>
 
-        <div class="row">
-            <div class="col-6">
-                <div class="form-group">
-                    <label for="trail-location" class="font-weight-bold text-secondary">Location</label>
-                    <InputText class="form-control" id="trail-location" @bind-Value="_Trail.Location" />
-                </div>
-            </div>
-        </div>
+        <FormFieldSet>
+            <label for="trail-description" class="font-weight-bold text-secondary">Description</label>
+            <InputTextArea class="form-control" id="trail-description" rows="6" @bind-Value="_Trail.Description" />
+        </FormFieldSet>
+
+        <FormFieldSet Width="col-6">
+            <label for="trail-location" class="font-weight-bold text-secondary">Location</label>
+            <InputText class="form-control" id="trail-location" @bind-Value="_Trail.Location" />
+        </FormFieldSet>
+      
     </FormSection>
 
     <div class="mt-4 mb-5">
