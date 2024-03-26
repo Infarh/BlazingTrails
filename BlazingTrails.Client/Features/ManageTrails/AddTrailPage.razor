@@ -94,6 +94,7 @@
                 <button class="btn btn-outline-primary" type="button" @onclick="@(() => _Trail.Route.Add(new()))">
                     Add Instruction
                 </button>
+                <ValidationMessage For="@(() => _Trail.Route)" />
             </div>
         </div>
 
