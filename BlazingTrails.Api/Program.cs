@@ -1,9 +1,19 @@
 using BlazingTrails.Api.Persistence;
+using BlazingTrails.Shared.Features.ManageTrails;
+
+using FluentValidation;
+using FluentValidation.AspNetCore;
+
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
+
+builder.Services
+    .AddFluentValidationAutoValidation()
+    .AddFluentValidationClientsideAdapters()
+    .AddValidatorsFromAssemblyContaining<TrailDTO>();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

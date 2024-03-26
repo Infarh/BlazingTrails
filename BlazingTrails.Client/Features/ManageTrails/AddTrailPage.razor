@@ -14,22 +14,27 @@
 <h3 class="mt-5 mb-4">Add a trail</h3>
 
 <EditForm Model="_Trail" OnValidSubmit="SubmitForm">
+    <FluentValidationValidator/>
+
     <FormSection Title="Basic Details"
                  HelpText="This information is used to identify the trail and can be searched to help hikers find it">
 
         <FormFieldSet Width="col-6">
             <label for="trail-name" class="font-weight-bold text-secondary">Name</label>
             <InputText class="form-control" id="trail-name" @bind-Value="_Trail.Name" />
+            <ValidationMessage For="@(() => _Trail.Name)" />
         </FormFieldSet>
 
         <FormFieldSet>
             <label for="trail-description" class="font-weight-bold text-secondary">Description</label>
             <InputTextArea class="form-control" id="trail-description" rows="6" @bind-Value="_Trail.Description" />
+            <ValidationMessage For="@(() => _Trail.Description)" />
         </FormFieldSet>
 
         <FormFieldSet Width="col-6">
             <label for="trail-location" class="font-weight-bold text-secondary">Location</label>
             <InputText class="form-control" id="trail-location" @bind-Value="_Trail.Location" />
+            <ValidationMessage For="@(() => _Trail.Location)" />
         </FormFieldSet>
       
     </FormSection>
@@ -40,6 +45,7 @@
         <FormFieldSet Width="col-3">
             <label for="trail-length" class="font-weight-bold text-secondary">Length (km)</label>
             <InputNumber class="form-control" id="trail-length" @bind-Value="_Trail.Length" />
+            <ValidationMessage For="@(() => _Trail.Length)" />
         </FormFieldSet>
 
     </FormSection>
@@ -66,6 +72,7 @@
                     <div class="form-group">
                         <label for="route-instruction-description" class="font-weight-bold text-secondary">Description</label>
                         <InputText class="form-control" id="route-instruction-description" @bind-Value="route_instruction.Description" />
+                        <ValidationMessage For="@(() => route_instruction.Description)" />
                     </div>
                 </div>
 
