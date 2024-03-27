@@ -1,0 +1,22 @@
+﻿@inherits InputBase<int>
+
+<div class="input-time">
+    <div>
+        <input class="form-control" type="number" min="0" />
+        <label>Hours</label>
+    </div>
+    <div>
+        <input class="form-control" type="number" min="0" max="59" />
+        <label>Minutes</label>
+    </div>
+</div>
+
+@code
+{
+    public int TimeInMinutes { get; set; }
+
+    protected override bool TryParseValueFromString(string? value, out int result, out string ValidationErrorMessage)
+    {
+        throw new NotImplementedException();
+    }
+}

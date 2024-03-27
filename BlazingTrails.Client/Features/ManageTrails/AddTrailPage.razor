@@ -164,9 +164,7 @@ else if (_ErrorMessage is { } error_message)
 
     private async Task SubmitForm()
     {
-        var response = await Mediator.Send(new AddTrailRequest(_Trail));
-
-        if (response.TrailId == -1)
+        if (await Mediator.Send(new AddTrailRequest(_Trail)) is not { TrailId: >= 0 })
         {
             _ErrorMessage = "There was a problem saving you trail.";
             _SubmitSuccessful = false;
