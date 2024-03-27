@@ -36,6 +36,7 @@ public class TrailDTOValidator : AbstractValidator<TrailDTO>
         RuleFor(t => t.Description).NotEmpty().WithMessage("Please enter description");
         RuleFor(t => t.Location).NotEmpty().WithMessage("Please enter location");
         RuleFor(t => t.Length).GreaterThan(0).WithMessage("The length must be greater than 0");
+        RuleFor(t => t.TimeInMinutes).GreaterThan(0).WithMessage("The time in minutes must be greater than 0");
         RuleFor(t => t.Route).NotEmpty().WithMessage("Please enter route instruction");
 
         RuleForEach(t => t.Route).SetValidator(new TrailDTORouteInstructionValidator());

@@ -117,12 +117,3 @@ a {
     color: orangered;
     font-size: .85em;
 }
-
-input.invalid, textarea.invalid, select.invalid {
-    border-color: red;
-    border-width: 2px;
-}
-
-input.valid.modified, text.valid.modified, textarea.valid.modified, select.valid.modified {
-    border-color: blue;
-}

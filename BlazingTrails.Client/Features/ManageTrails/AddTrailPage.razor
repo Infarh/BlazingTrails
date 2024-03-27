@@ -38,7 +38,7 @@ else if (_ErrorMessage is { } error_message)
     </div>
 }
 
-<EditForm Model="_Trail" OnValidSubmit="SubmitForm">
+<EditForm EditContext="_EditContext" OnValidSubmit="SubmitForm">
     <FluentValidationValidator/>
 
     <FormSection Title="Basic Details"
@@ -135,23 +135,32 @@ else if (_ErrorMessage is { } error_message)
         <div class="row">
             <div class="offset-4 col-8 d-flex justify-content-end">
                 <button class="btn btn-primary" type="submit">Submit</button>
-                <button class="btn btn-outline-secondary"
-                        type="button"
-                        @onclick="@(() => _Trail = new())">
+                <button class="btn btn-outline-secondary" type="button" @onclick="InitializeForm">
                     Reset
                 </button>
             </div>
         </div>
     </div>
+
 </EditForm>
 
 @code 
 {
-    private TrailDTO _Trail = new();
+    private EditContext _EditContext = null!;
+
+    private TrailDTO _Trail = null!;
 
     private bool _SubmitSuccessful;
 
     private string? _ErrorMessage;
+
+    protected override void OnInitialized() => InitializeForm();
+
+    private void InitializeForm()
+    {
+        _EditContext = new(_Trail = new());
+        _EditContext.SetFieldCssClassProvider(new Validation.BootstrapCssClassProvider());
+    }
 
     private async Task SubmitForm()
     {
