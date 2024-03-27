@@ -1,6 +1,6 @@
+using BlazingTrails.Client;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
-using BlazingTrails.Client;
 using BlazingTrails.Shared.Features.ManageTrails;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);

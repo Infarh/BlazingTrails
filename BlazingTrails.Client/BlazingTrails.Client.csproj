@@ -31,4 +31,8 @@
     <UpToDateCheckInput Remove="Features\ManageTrails\FormSeection.razor.scss" />
   </ItemGroup>
 
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Features\ManageTrails\InputTime.razor.scss" />
+  </ItemGroup>
+
 </Project>

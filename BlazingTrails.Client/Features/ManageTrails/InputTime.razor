@@ -2,21 +2,53 @@
 
 <div class="input-time">
     <div>
-        <input class="form-control" type="number" min="0" />
+        <input class="form-control" type="number" 
+               min="0" 
+               @onchange="SetHourValue" value="@_Hours" />
         <label>Hours</label>
     </div>
     <div>
-        <input class="form-control" type="number" min="0" max="59" />
+        <input class="form-control" type="number" 
+               min="0" max="59" 
+               @onchange="SetMinuteValue" value="@_Minutes"/>
         <label>Minutes</label>
     </div>
 </div>
 
 @code
 {
+    private int _Hours;
+    private int _Minutes;
+
     public int TimeInMinutes { get; set; }
 
-    protected override bool TryParseValueFromString(string? value, out int result, out string ValidationErrorMessage)
+    protected override void OnParametersSet()
+    {
+        if(CurrentValue <= 0) return;
+
+        _Hours = CurrentValue / 60;
+        _Minutes = CurrentValue % 60;
+    }
+
+    protected override bool TryParseValueFromString(
+        string? value, 
+        out int result, 
+        out string ValidationErrorMessage)
     {
         throw new NotImplementedException();
     }
+
+    private void SetHourValue(ChangeEventArgs args)
+    {
+        int.TryParse(args.Value?.ToString(), out _Minutes);
+        SetCurrentValue();
+    }
+
+    private void SetMinuteValue(ChangeEventArgs args)
+    {
+        int.TryParse(args.Value?.ToString(), out _Hours);
+        SetCurrentValue();
+    }
+
+    private void SetCurrentValue() => CurrentValue = _Minutes + _Hours * 60;
 }
