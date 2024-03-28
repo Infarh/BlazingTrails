@@ -62,6 +62,12 @@ else if (_ErrorMessage is { } error_message)
             <ValidationMessage For="@(() => _Trail.Location)" />
         </FormFieldSet>
 
+        <FormFieldSet>
+            <label class="font-weight-bold text-secondary" for="trail-image">Image</label>
+            <InputFile class="form-control-file" id="trail-image" accept=".png,.jpg,.jpeg,.bmp"
+                       OnChange="e => _TrailImage = e.File" />
+        </FormFieldSet>
+
     </FormSection>
 
     <FormSection Title="Difficulty"
@@ -162,25 +168,48 @@ else if (_ErrorMessage is { } error_message)
 
     private string? _ErrorMessage;
 
+    private IBrowserFile? _TrailImage;
+
     protected override void OnInitialized() => InitializeForm();
 
     private void InitializeForm()
     {
         _EditContext = new(_Trail = new());
         _EditContext.SetFieldCssClassProvider(new Validation.BootstrapCssClassProvider());
+        _ErrorMessage = null;
+        _TrailImage = null;
     }
 
     private async Task SubmitForm()
     {
-        if (await Mediator.Send(new AddTrailRequest(_Trail)) is not { TrailId: >= 0 })
+        if (await Mediator.Send(new AddTrailRequest(_Trail)) is not { TrailId: >= 0 and var trail_id })
         {
             _ErrorMessage = "There was a problem saving you trail.";
             _SubmitSuccessful = false;
             return;
         }
 
-        _Trail = new();
-        _ErrorMessage = null;
+        if (_TrailImage is null)
+        {
+            _SubmitSuccessful = true;
+            InitializeForm();
+            return;
+        }
+
+        await ProcessImage(trail_id);
+    }
+
+    private async Task ProcessImage(int TrailId)
+    {
+        var image_upload_response = await Mediator.Send(new UploadTrailImageRequest(TrailId, _TrailImage));
+
+        if (string.IsNullOrWhiteSpace(image_upload_response.ImageName))
+        {
+            _ErrorMessage = "Your trail was saved, but there was a problem uploading the image.";
+            return;
+        }
+
         _SubmitSuccessful = true;
+        InitializeForm();
     }
 }
