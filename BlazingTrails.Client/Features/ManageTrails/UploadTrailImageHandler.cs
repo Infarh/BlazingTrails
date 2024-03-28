@@ -18,7 +18,7 @@ public class UploadTrailImageHandler(
         using var content = new MultipartFormDataContent();
         content.Add(new StreamContent(file_content), "image", request.File.Name);
 
-        var response = await Http.PostAsync(UploadTrailImageRequest.RouteTemplate.Replace("{TrailId}", request.TrailId.ToString()), content, Cancel);
+        var response = await Http.PostAsync(request.Route, content, Cancel);
 
         if (response.IsSuccessStatusCode)
         {
